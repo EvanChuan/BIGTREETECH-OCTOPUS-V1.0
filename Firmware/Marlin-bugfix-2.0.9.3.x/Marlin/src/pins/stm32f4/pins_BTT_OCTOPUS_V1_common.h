@@ -135,7 +135,12 @@
     #define Z_MAX_PIN                E2_DIAG_PIN  // PWRDET
   #endif
 #else
-  #define Z_STOP_PIN                  Z_DIAG_PIN  // Z-STOP
+  #ifdef USE_ZMAX_PLUG
+    #define Z_MAX_PIN                 Z2_DIAG_PIN // Z MAX-STOP  // EC: add additionally
+    #define Z_MIN_PIN                 Z_DIAG_PIN  // Z-STOP
+  #else
+    #define Z_STOP_PIN                Z_DIAG_PIN  // Z-STOP
+  #endif
 #endif
 
 // EC : define the I and J MIN_PIN

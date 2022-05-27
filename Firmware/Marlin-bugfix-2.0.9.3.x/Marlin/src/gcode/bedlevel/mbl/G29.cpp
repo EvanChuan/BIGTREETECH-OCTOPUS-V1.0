@@ -154,6 +154,7 @@ void GcodeSuite::G29() {
       }
       // For each G29 S2...
       if (mbl_probe_index == 0) {
+        SERIAL_ECHOLNPGM("mbl_probe_index = ", mbl_probe_index);
         // Move close to the bed before the first point
         do_blocking_move_to_z(
           #ifdef MANUAL_PROBE_START_Z
@@ -165,7 +166,9 @@ void GcodeSuite::G29() {
       }
       else {
         // Save Z for the previous mesh position
+        SERIAL_ECHOLNPGM("mbl_probe_index = ", mbl_probe_index);
         mbl.set_zigzag_z(mbl_probe_index - 1, current_position.z);
+        SERIAL_ECHOLNPGM("set_zigzag_z =  ", current_position.z);
         TERN_(EXTENSIBLE_UI, ExtUI::onMeshUpdate(ix, iy, current_position.z));
         TERN_(DWIN_LCD_PROUI, DWIN_MeshUpdate(_MIN(mbl_probe_index, GRID_MAX_POINTS), int(GRID_MAX_POINTS), current_position.z));
         SET_SOFT_ENDSTOP_LOOSE(false);
@@ -174,6 +177,7 @@ void GcodeSuite::G29() {
       if (mbl_probe_index < (GRID_MAX_POINTS)) {
         // Disable software endstops to allow manual adjustment
         // If G29 is left hanging without completion they won't be re-enabled!
+        SERIAL_ECHOLNPGM("another point to sample.");
         SET_SOFT_ENDSTOP_LOOSE(true);
         mbl.zigzag(mbl_probe_index++, ix, iy);
         _manual_goto_xy({ mbl.index_to_xpos[ix], mbl.index_to_ypos[iy] });
