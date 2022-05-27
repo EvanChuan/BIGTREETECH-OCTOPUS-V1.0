@@ -184,11 +184,21 @@
   #define _W_HALF_WMAX ((W_BED_SIZE) / 2)
 #endif
 
-#define X_CENTER TERN(BED_CENTER_AT_0_0, 0, _X_HALF_BED)
+#if X_CENTER_MANUAL     // EC:add x center by user in Configuration.h
+  #define X_CENTER X_CENTER_MANUAL_VALUE
+#else
+  #define X_CENTER TERN(BED_CENTER_AT_0_0, 0, _X_HALF_BED)
+#endif
+
 #if HAS_Y_AXIS
-  #define Y_CENTER TERN(BED_CENTER_AT_0_0, 0, _Y_HALF_BED)
+  #if Y_CENTER_MANUAL     // EC:add x center by user in Configuration.h
+    #define Y_CENTER Y_CENTER_MANUAL_VALUE
+  #else
+    #define Y_CENTER TERN(BED_CENTER_AT_0_0, 0, _Y_HALF_BED)
+  #endif
   #define XY_CENTER { X_CENTER, Y_CENTER }
 #endif
+
 #if HAS_I_AXIS
   #define I_CENTER TERN(BED_CENTER_AT_0_0, 0, _I_HALF_BED)
 #endif
