@@ -551,11 +551,11 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 30
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
-#define TEMP_SENSOR_BOARD 1
+#define TEMP_SENSOR_BOARD 0    // need TEMP_BOARD_PIN but there is not on the BTT Octopus
 #define TEMP_SENSOR_REDUNDANT 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -656,9 +656,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  24.62 //22.20
-    #define DEFAULT_Ki    1.9 //1.08
-    #define DEFAULT_Kd  79.79 //114.00
+    #define DEFAULT_Kp  27.99 //22.20
+    #define DEFAULT_Ki   2.26 //1.08
+    #define DEFAULT_Kd  86.76 //114.00
   #endif
 #endif
 
@@ -739,9 +739,9 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 3.722 //10.00
-  #define DEFAULT_bedKi 0.0982 //.023
-  #define DEFAULT_bedKd 94.0911 //305.4
+  #define DEFAULT_bedKp 7.43 //10.00
+  #define DEFAULT_bedKi 0.23 //.023
+  #define DEFAULT_bedKd 159.25 //305.4
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -839,8 +839,8 @@
 
 #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
 #define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
-#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+//#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+//#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
 //===========================================================================
 //============================= Mechanical Settings =========================
